@@ -7,8 +7,12 @@ block content
     h3 #{restaurant.description}
     h3 with a rating of #{restaurant.rating} stars
     h4 posted by: #{postCreator.name}
+    br
+    br
     if user
         if user._id == restaurant.posted_by
             a(href="/app/edit/" + restaurant._id) Edit
+            br
+            br
             br
             a(href="/app/delete/" + restaurant._id) Delete
