@@ -8,13 +8,13 @@ block content
     h1 Login
     form(method="POST", action="/users/login")
             label Email: 
-            input.form-control(name="email", type="text")
+            input(name="email", type="text")
             br
             br
             label Password: 
-            input.form-control(name="password", type="password")
+            input(name="password", type="password")
             br
             br
-            input.btn.btn-primary(type="submit", value="Login")
+            input(type="submit", value="Login")
             h3 New users register 
                 a(href="/users/register") HERE 

@@ -2,7 +2,7 @@ extends layout
 
 block content
   img(src="/images/BElogo.png")
-  h1 Restaurants List
+  h1 Restaurants Posted
   each restaurant in restaurants
     h2 
       a(href="/app/" + restaurant.id) #{restaurant.name} 

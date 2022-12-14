@@ -1,0 +1,25 @@
+extends layout 
+
+block content
+
+    if errors
+        each error in errors 
+            p(style="color:red") #{error.msg}
+
+    h1 Popular Restaurants you can look at
+    h3 #1
+    h2
+        a(href="http://www.laviniarestaurant.com/") LaVinia Restaurant
+    h3 #2
+    h2
+        a(href="https://www.thecasamadera.com/") The Casa Madera
+    h3 #3
+    h2
+        a(href="https://alorestaurant.com/") Alo
+    h3 #4
+    h2
+        a(href="https://georgeonqueen.com/") George on Queen
+    h3 #5
+    h2
+        a(href="http://houseonparliament.com/") House on Parliament
+    br

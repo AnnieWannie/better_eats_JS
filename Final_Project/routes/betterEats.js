@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 
 var { check, validationResult } = require("express-validator");
-const { render } = require('../app');
-var restaurant = require("../models/restaurant")
 
 var Restaurant = require("../models/restaurant");
 var User = require("../models/user");
@@ -44,6 +42,10 @@ router.post('/add', ensureAuthenticated, async function(req, res) {
         })
     }
 })
+
+router.get("/poprestaurants", ensureAuthenticated, function(req,res){
+    res.render("poprestaurants")
+        })
 
 router.get("/:id", function(req,res){
     Restaurant.findById(req.params.id, function (err, restaurant){
@@ -134,10 +136,6 @@ router.post("/delete/:id", ensureAuthenticated, function(req,res){
         }
       });
     });
-
-router.post("/delete/:id", function(req,res){
-
-})
 
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
