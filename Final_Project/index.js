@@ -13,7 +13,7 @@ var session = require("express-session");
 var usersRouter = require('./routes/users');
 var betterEatsRoutes = require('./routes/betterEats.js');
 
-mongoose.connect(dbconfig.database);
+mongoose.connect("mongodb+srv://Admin:Admin@cluster0.nrjywnu.mongodb.net/test");
 let db = mongoose.connection;
 
 db.once("open", function(){
