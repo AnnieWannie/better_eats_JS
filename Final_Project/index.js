@@ -5,15 +5,23 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var mongoose = require("mongoose");
+
 var dbconfig = require("./config/database");
 var passport = require("passport");
+
 var cors = require("cors");
 var session = require("express-session");
+var MongoStore = require('connect-mongo');
 
 var usersRouter = require('./routes/users');
 var betterEatsRoutes = require('./routes/betterEats.js');
 
-mongoose.connect("mongodb+srv://Admin:Admin@cluster0.nrjywnu.mongodb.net/test");
+require("./config/passport")(passport);
+
+mongoose.connect( process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 let db = mongoose.connection;
 
 db.once("open", function(){
@@ -29,21 +37,26 @@ var app = express();
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+app.use(cookieParser());
 app.use(session({
-  secret: "secret",
-  resave: false,
+  secret: process.env.SECRET_SESSION,
+  resave: true,
   saveUninitialized: false,
-  cookie: {},
+  store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
+  cookie: {
+    maxAge: 24 * 60 * 60 * 1000
+  },
 }));
 
-require("./config/passport")(passport);
-
-
 app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.session(
+  {
+  pauseStream: true
+  }
+));
 
 app.use(cors())
 
