@@ -42,7 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(cookieParser());
 app.use(session({
-  secret: process.env.SECRET_SESSION,
+  secret: process.env.SESSION_SECRET,
   resave: true,
   saveUninitialized: false,
   store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
