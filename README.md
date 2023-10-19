@@ -7,3 +7,5 @@ Fully integrated with MongoDB allowing for persistence of Registered Users, User
 Session data within the DB is deleted and destroyed upon logging out.
 
 ## Viewable [HERE](https://better-eats-js.vercel.app/)
+
+![Homepage](Final_Project/public/images/Screenshot%202023-10-18%20202904.png)
